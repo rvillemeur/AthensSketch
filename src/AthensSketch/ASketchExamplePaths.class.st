@@ -7,7 +7,7 @@ Class {
 	#category : #'AthensSketch-Examples'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #'sketch api' }
 ASketchExamplePaths >> drawStepOn: aCanvas [
 	self clear: Color black.
 	(aCanvas setStrokePaint: Color white) width:2.
