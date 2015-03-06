@@ -109,15 +109,15 @@ ASketchAnimExportDialog >> initializePresenter [
 ASketchAnimExportDialog >> initializeWidgets [
 
 	fileLabel := self newLabel.
-	fileLabel label: 'Filename' translated.
+	fileLabel text: 'Filename' translated.
 	fileInput := self newTextInput
 		entryCompletion: nil;
 		acceptOnCR;
 		yourself.
 	startFrameLabel := self newLabel.
-	startFrameLabel label: 'Start Frame' translated.
+	startFrameLabel text: 'Start Frame' translated.
 	endFrameLabel := self newLabel.
-	endFrameLabel label: 'End Frame' translated.
+	endFrameLabel text: 'End Frame' translated.
 	startFrameInput := self newTextInput
 		entryCompletion: nil;
 		yourself.
@@ -128,7 +128,8 @@ ASketchAnimExportDialog >> initializeWidgets [
 		entryCompletion: nil;
 		yourself.
 	delayLabel := self newLabel.
-	delayLabel label: 'delay (1/100 sec)' translated.
+	delayLabel text: 'delay (1/100 sec)' translated.
+	self focusOrder add: fileInput; add: startFrameInput; add: endFrameInput; add: delayInput.
 	self title:'Export as Animated GIF'.
 ]
 

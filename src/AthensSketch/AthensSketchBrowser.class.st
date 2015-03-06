@@ -27,6 +27,12 @@ AthensSketchBrowser class >> defaultSpec [
 		yourself
 ]
 
+{ #category : #open }
+AthensSketchBrowser class >> open [
+	<example>
+	self new openWithSpec
+]
+
 { #category : #private }
 AthensSketchBrowser >> browseClassItem: item [
 	item browse
