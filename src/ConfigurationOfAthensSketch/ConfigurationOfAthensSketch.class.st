@@ -158,3 +158,26 @@ ConfigurationOfAthensSketch >> project [
 		project loadType: #linear. "change to #atomic if desired"
 		project ]
 ]
+
+{ #category : #'symbolic versions' }
+ConfigurationOfAthensSketch >> stable: spec [
+	<symbolicVersion: #'stable'>
+
+	spec for: #'common' version: '0.5'.
+
+]
+
+{ #category : #versions }
+ConfigurationOfAthensSketch >> version05: spec [
+	<version: '0.5' imports: #('0.1-baseline' )>
+
+	spec for: #'common' do: [
+		spec blessing: #'stable'.
+		spec description: 'version 0.5'.
+		spec author: 'NicolaiHess'.
+		spec timestamp: '3/6/2015 00:28'.
+		spec 
+			package: 'AthensSketch' with: 'AthensSketch-NicolaiHess.3';
+			package: 'ASketchExamples' with: 'ASketchExamples-NicolaiHess.2'. ].
+
+]
