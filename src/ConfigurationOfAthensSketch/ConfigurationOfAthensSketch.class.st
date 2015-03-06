@@ -29,6 +29,11 @@ ConfigurationOfAthensSketch class >> baseConfigurationClassIfAbsent: aBlock [
 
 ]
 
+{ #category : #catalog }
+ConfigurationOfAthensSketch class >> catalogDescription [
+	^ 'Athens Sketch is a simple playground for Athens drawings. Subclass AthensSketch and define your own sketch drawing in the #drawStepOn: method. It provides basic frame based animation (play/pause/stop). Open a player with ''MySketch openPlayer'', or a simple viewer morph with ''MySketch openView''. An AthensSketchBrowser lists all defined AthensSketch subclasses. You can step through the list of examples, start and stop the drawing, or view and edit the drawing code. The main purpose of this packages is to ease the creation of simple drawings and provide a rich set of examples for Athens drawing API'.
+]
+
 { #category : #private }
 ConfigurationOfAthensSketch class >> ensureMetacello [
 
