@@ -1,5 +1,5 @@
 "
-create another surface, paint on that surface (a star) and use the resulting image as a mask for drawing on the sketch surface.
+create another surface, paint on that surface (a star) and use the resulting image as a mask for drawing another image on the sketch surface.
 "
 Class {
 	#name : #ASketchPaintAsMask,
