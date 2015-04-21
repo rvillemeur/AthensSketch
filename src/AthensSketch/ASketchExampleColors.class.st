@@ -50,7 +50,7 @@ ASketchExampleColors >> drawNamedColorsOn: anAthensCanvas [
 			anAthensCanvas pathTransform
 				restoreAfter: [ 
 					| paint |
-					paint := Color perform: c asSymbol.
+					paint := Color colorFrom: c asString.
 					anAthensCanvas setPaint: paint.
 					anAthensCanvas pathTransform rotateByDegrees: 360 * i / registeredColors size.
 					anAthensCanvas pathTransform translateBy: 55 @ 0.
