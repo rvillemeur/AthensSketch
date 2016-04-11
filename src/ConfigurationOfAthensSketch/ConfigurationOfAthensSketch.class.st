@@ -163,7 +163,7 @@ ConfigurationOfAthensSketch >> project [
 ConfigurationOfAthensSketch >> stable: spec [
 	<symbolicVersion: #'stable'>
 
-	spec for: #'common' version: '0.5'.
+	spec for: #'common' version: '0.6'.
 
 ]
 
@@ -178,6 +178,21 @@ ConfigurationOfAthensSketch >> version05: spec [
 		spec timestamp: '3/6/2015 00:28'.
 		spec 
 			package: 'AthensSketch' with: 'AthensSketch-NicolaiHess.3';
+			package: 'ASketchExamples' with: 'ASketchExamples-NicolaiHess.2'. ].
+
+]
+
+{ #category : #'as yet unclassified' }
+ConfigurationOfAthensSketch >> version06: spec [
+	<version: '0.6' imports: #('0.1-baseline' )>
+
+	spec for: #'common' do: [
+		spec blessing: #'stable'.
+		spec description: 'fix some minor code changes'.
+		spec author: 'NicolaiHess'.
+		spec timestamp: '4/11/2015 00:28'.
+		spec 
+			package: 'AthensSketch' with: 'AthensSketch-NicolaiHess.5';
 			package: 'ASketchExamples' with: 'ASketchExamples-NicolaiHess.2'. ].
 
 ]
