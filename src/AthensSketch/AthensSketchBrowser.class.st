@@ -197,7 +197,7 @@ AthensSketchBrowser >> sketchNodeFromMethod: aSketchExampleMethod [
 { #category : #private }
 AthensSketchBrowser >> sketchPackages [
 	| packages |
-	packages := (AthensSketch allSubclasses collect: [ :c | RPackageOrganizer default packageOf: c ]) removeDuplicates.
+	packages := (AthensSketch allSubclasses collect: [ :c | RPackageOrganizer default packageOf: c ]) asSet.
 	^ packages collect: [ :p | self packageNodeFrom: p ]
 ]
 

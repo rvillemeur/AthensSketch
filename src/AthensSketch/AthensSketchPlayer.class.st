@@ -82,17 +82,17 @@ AthensSketchPlayer >> nextFrame [
 
 { #category : #announcements }
 AthensSketchPlayer >> onPauseSend: aSelector to: aReceiver [
-	announcer on: AthensSketchStatePaused send: aSelector to: aReceiver
+	announcer when: AthensSketchStatePaused send: aSelector to: aReceiver
 ]
 
 { #category : #announcements }
 AthensSketchPlayer >> onPlayingSend: aSelector to: aReceiver [
-	announcer on: AthensSketchStatePlaying send: aSelector to: aReceiver
+	announcer when: AthensSketchStatePlaying send: aSelector to: aReceiver
 ]
 
 { #category : #announcements }
 AthensSketchPlayer >> onStopingSend: aSelector to: aReceiver [
-	announcer on: AthensSketchStateStopped send: aSelector to: aReceiver
+	announcer when: AthensSketchStateStopped send: aSelector to: aReceiver
 ]
 
 { #category : #states }
