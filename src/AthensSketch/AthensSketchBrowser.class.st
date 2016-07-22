@@ -102,7 +102,7 @@ AthensSketchBrowser >> initializeWidgets [
 	toolbar := self instantiate: AthensSketchPlayerToolbar.
 	tree
 		roots: self sketchPackages;
-		displayBlock: [ :item | item name ].
+		displayBlock: [ :item | item asString ].
 	tree menu:[:menu :shifted | self buildMenu:menu shifted: shifted].
 	self whenBuiltDo: [ self window whenClosedDo: [ self setSketchSource: nil ] ].
 	self title: 'SketchBrowser'.
