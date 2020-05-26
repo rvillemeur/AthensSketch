@@ -1,5 +1,7 @@
 "
 Shows a list of all defined AthensSketch subclasses and provide an editor and player control for code and run the current selected sketch
+
+AthensSketchBrowser open
 "
 Class {
 	#name : #AthensSketchBrowser,

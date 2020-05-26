@@ -34,7 +34,8 @@ AthensSketchPlayerToolbar class >> defaultSpec [
 { #category : #icons }
 AthensSketchPlayerToolbar class >> pauseIcon [
 	^ pauseIcon
-		ifNil: [ pauseIcon := Form fromBinaryStream: (Base64MimeConverter mimeDecodeToBytes: self pauseIconContents readStream) ]
+		ifNil: [ pauseIcon := Form
+				fromBinaryStream: self pauseIconContents base64Decoded readStream ]
 ]
 
 { #category : #'private icons' }
@@ -49,7 +50,8 @@ GQobhYeJKI6PkJAhADs='
 { #category : #icons }
 AthensSketchPlayerToolbar class >> startIcon [
 	^ startIcon
-		ifNil: [ startIcon := Form fromBinaryStream: (Base64MimeConverter mimeDecodeToBytes: self startIconContents readStream) ]
+		ifNil: [ startIcon := Form
+				fromBinaryStream: self startIconContents base64Decoded readStream ]
 ]
 
 { #category : #'private icons' }
@@ -65,7 +67,8 @@ nrFYMApiQcPXbDYcGwkJRQcdhx0eHgYIRwMjIiIjBARJAScmAQJPAJ1Pn6BGQQA7'
 { #category : #icons }
 AthensSketchPlayerToolbar class >> stopIcon [
 	^ stopIcon
-		ifNil: [ stopIcon := Form fromBinaryStream: (Base64MimeConverter mimeDecodeToBytes: self stopIconContents readStream) ]
+		ifNil: [ stopIcon := Form
+				fromBinaryStream: self stopIconContents base64Decoded readStream ]
 ]
 
 { #category : #'private icons' }
