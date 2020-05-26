@@ -35,6 +35,19 @@ AthensSketchBrowser class >> open [
 	self new openWithSpec
 ]
 
+{ #category : #'class initialization' }
+AthensSketchBrowser class >> worldMenu: aBuilder [
+	<worldMenu>
+	(aBuilder item: #'Athens sketch')
+		parent: #Tools;
+		action: [ self open ];
+		order: 25;
+		help: 'practice your drawing with Athens';
+		icon: ThemeIcons current paint.
+	aBuilder withSeparatorAfter	
+
+]
+
 { #category : #private }
 AthensSketchBrowser >> browseClassItem: item [
 	item browse
