@@ -43,9 +43,8 @@ AthensSketchBrowser class >> worldMenu: aBuilder [
 		action: [ self open ];
 		order: 25;
 		help: 'practice your drawing with Athens';
-		icon: ThemeIcons current paint.
-	aBuilder withSeparatorAfter	
-
+		icon: (self iconNamed: #paint).
+	aBuilder withSeparatorAfter
 ]
 
 { #category : #private }
