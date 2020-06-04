@@ -15,7 +15,7 @@ ASketchExampleMirrorHand class >> exampleOpen [
 { #category : #'sketch api' }
 ASketchExampleMirrorHand >> drawStepOn: aCanvas [
 	| rect |
-	rect := (ActiveHand position extent: self extent) translateBy: self extent / 2.0 negated.
+	rect := (Smalltalk currentWorld activeHand  position extent: self extent) translateBy: self extent / 2.0 negated.
 	self clear: Color white.
 	(World submorphs select: [ :m | m bounds intersects: rect ])
 		reverseDo: [ :d | 
