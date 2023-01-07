@@ -112,7 +112,7 @@ AthensSketchBrowser >> initializeWidgets [
 	list := self newList.
 	tree := self newTree.
 	editor := self newText.
-	sketchEditor := self instantiate: AthensSketchEditor.
+	sketchEditor := self instantiate: AthensSketchEditorPresenter.
 	toolbar := self instantiate: AthensSketchPlayerToolbar.
 	tree
 		roots: self sketchPackages;
