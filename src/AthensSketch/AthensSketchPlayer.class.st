@@ -1,6 +1,7 @@
 "
-AthensSketchPlayer manage animation controls (start/stop/pause) for an AthensSketch. 
-The start method calls setup on the Sketch. 
+I'm a domain object responsible to manage animation control.
+AthensSketchPlayer manages animation controls (start/stop/pause) for an AthensSketch. 
+The start method calls setup on the sketch. 
 A playing sketch can be paused/resumed or stopped.
 
 "
@@ -62,7 +63,7 @@ AthensSketchPlayer >> initialize [
 
 	super initialize.
 	announcer := Announcer new.
-	state := AthensSketchStateStopped new.
+	state := AthensStoppedSketchState new.
 	frameNumber := 0.
 	frameTimeMillis := 0.
 	frameDurationMillis := 0.
@@ -82,17 +83,17 @@ AthensSketchPlayer >> nextFrame [
 
 { #category : #announcements }
 AthensSketchPlayer >> onPauseSend: aSelector to: aReceiver [
-	announcer when: AthensSketchStatePaused send: aSelector to: aReceiver
+	announcer when: AthensPausedSketchState send: aSelector to: aReceiver
 ]
 
 { #category : #announcements }
 AthensSketchPlayer >> onPlayingSend: aSelector to: aReceiver [
-	announcer when: AthensSketchStatePlaying send: aSelector to: aReceiver
+	announcer when: AthensPlayingSketchState send: aSelector to: aReceiver
 ]
 
 { #category : #announcements }
 AthensSketchPlayer >> onStopingSend: aSelector to: aReceiver [
-	announcer when: AthensSketchStateStopped send: aSelector to: aReceiver
+	announcer when: AthensStoppedSketchState send: aSelector to: aReceiver
 ]
 
 { #category : #states }

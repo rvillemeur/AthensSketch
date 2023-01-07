@@ -4,28 +4,28 @@ Player is in playing state. Valid state changes are
 ->stopped
 "
 Class {
-	#name : #AthensSketchStatePlaying,
+	#name : #AthensPlayingSketchState,
 	#superclass : #AthensSketchPlayerState,
 	#category : #'AthensSketch-Control'
 }
 
 { #category : #testing }
-AthensSketchStatePlaying >> isPlaying [
+AthensPlayingSketchState >> isPlaying [
 	^ true
 ]
 
 { #category : #printing }
-AthensSketchStatePlaying >> pause [
-	^ AthensSketchStatePaused new
+AthensPlayingSketchState >> pause [
+	^ AthensPausedSketchState new
 ]
 
 { #category : #printing }
-AthensSketchStatePlaying >> printOn: aStream [
+AthensPlayingSketchState >> printOn: aStream [
 	aStream
 		nextPutAll: 'playing'
 ]
 
 { #category : #printing }
-AthensSketchStatePlaying >> stop [
-	^ AthensSketchStateStopped new
+AthensPlayingSketchState >> stop [
+	^ AthensStoppedSketchState new
 ]

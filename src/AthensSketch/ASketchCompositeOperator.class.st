@@ -12,37 +12,40 @@ Class {
 
 { #category : #'sketch examples' }
 ASketchCompositeOperator class >> createSketchOperatorAtop [
-|sketch|
 	<athensSketchExample>
+	| sketch |
 	sketch := self new.
-	sketch operator:#atop.
+	sketch operator: #atop.
 	^ sketch
 ]
 
 { #category : #'sketch examples' }
 ASketchCompositeOperator class >> createSketchOperatorClear [
-|sketch|
+
 	<athensSketchExample>
+	| sketch |
 	sketch := self new.
-	sketch operator:#clear.
+	sketch operator: #clear.
 	^ sketch
 ]
 
 { #category : #'sketch examples' }
 ASketchCompositeOperator class >> createSketchOperatorDest [
-|sketch|
+
 	<athensSketchExample>
+	| sketch |
 	sketch := self new.
-	sketch operator:#dest.
+	sketch operator: #dest.
 	^ sketch
 ]
 
 { #category : #'sketch examples' }
 ASketchCompositeOperator class >> createSketchOperatorDestAtop [
-|sketch|
+
 	<athensSketchExample>
+	| sketch |
 	sketch := self new.
-	sketch operator:#destAtop.
+	sketch operator: #destAtop.
 	^ sketch
 ]
 
@@ -57,55 +60,61 @@ ASketchCompositeOperator class >> createSketchOperatorDestIn [
 
 { #category : #'sketch examples' }
 ASketchCompositeOperator class >> createSketchOperatorDestOut [
-|sketch|
+
 	<athensSketchExample>
+	| sketch |
 	sketch := self new.
-	sketch operator:#destOut.
+	sketch operator: #destOut.
 	^ sketch
 ]
 
 { #category : #'sketch examples' }
 ASketchCompositeOperator class >> createSketchOperatorDestOver [
-|sketch|
+
 	<athensSketchExample>
+	| sketch |
 	sketch := self new.
-	sketch operator:#destOver.
+	sketch operator: #destOver.
 	^ sketch
 ]
 
 { #category : #'sketch examples' }
 ASketchCompositeOperator class >> createSketchOperatorIn [
-|sketch|
+
 	<athensSketchExample>
+	| sketch |
 	sketch := self new.
-	sketch operator:#in.
+	sketch operator: #in.
 	^ sketch
 ]
 
 { #category : #'sketch examples' }
 ASketchCompositeOperator class >> createSketchOperatorOut [
-|sketch|
+
 	<athensSketchExample>
+	| sketch |
 	sketch := self new.
-	sketch operator:#out.
+	sketch operator: #out.
 	^ sketch
 ]
 
 { #category : #'sketch examples' }
 ASketchCompositeOperator class >> createSketchOperatorOver [
-|sketch|
+
 	<athensSketchExample>
+	| sketch |
 	sketch := self new.
-	sketch operator:#over.
+	sketch operator: #over.
 	^ sketch
 ]
 
 { #category : #'sketch examples' }
 ASketchCompositeOperator class >> createSketchOperatorSource [
-|sketch|
+
 	<athensSketchExample>
+	| sketch |
 	sketch := self new.
-	sketch operator:#source.
+	sketch operator: #source.
 	^ sketch
 ]
 

@@ -11,6 +11,15 @@ Class {
 	#category : #'AthensSketch-UI'
 }
 
+{ #category : #'instance creation' }
+AthensSketchMorph class >> openOnSketchClass: aClass [
+	"self openOnSketchClass: ASketchBasicExample"
+	
+	self new 
+		sketch: aClass new;
+		openInWorld
+]
+
 { #category : #menu }
 AthensSketchMorph >> addCustomMenuItems: aMenu hand: aHand [
 	super addCustomMenuItems: aMenu hand: aHand.

@@ -9,7 +9,7 @@ Class {
 }
 
 { #category : #testing }
-AthensSketchPlayerState >> isPausing [
+AthensSketchPlayerState >> isPaused [
 	^ false
 ]
 

@@ -3,23 +3,23 @@ Stopped state, valid state changes are
 -> playing
 "
 Class {
-	#name : #AthensSketchStateStopped,
+	#name : #AthensStoppedSketchState,
 	#superclass : #AthensSketchPlayerState,
 	#category : #'AthensSketch-Control'
 }
 
 { #category : #testing }
-AthensSketchStateStopped >> isStopped [
+AthensStoppedSketchState >> isStopped [
 	^ true
 ]
 
 { #category : #testing }
-AthensSketchStateStopped >> play [
-	^ AthensSketchStatePlaying new
+AthensStoppedSketchState >> play [
+	^ AthensPlayingSketchState new
 ]
 
 { #category : #testing }
-AthensSketchStateStopped >> printOn: aStream [
+AthensStoppedSketchState >> printOn: aStream [
 	aStream
 		nextPutAll: 'stopped'
 ]

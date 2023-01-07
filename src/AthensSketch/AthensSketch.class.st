@@ -30,7 +30,7 @@ Class {
 
 { #category : #'instance creation' }
 AthensSketch class >> openPlayer [
-	^ (AthensSketchAppPresenter new sketch: self new) openWithSpec
+	^ (AthensSketchAppPresenter new sketch: self new) open
 ]
 
 { #category : #'instance creation' }
@@ -45,7 +45,8 @@ AthensSketch >> athensSurface [
 
 { #category : #drawing }
 AthensSketch >> basicDrawStepOn: aCanvas [
-	player state isPlaying
+	"player state isPlaying"
+	true
 		ifTrue: [ 
 			player nextFrame.
 			self drawStepOn: aCanvas ]
