@@ -3,7 +3,7 @@ Inputdialog for the animated GIF writer.
 "
 Class {
 	#name : #ASketchAnimExportDialog,
-	#superclass : #ComposableModel,
+	#superclass : #SpPresenter,
 	#instVars : [
 		'delayInput',
 		'delayLabel',

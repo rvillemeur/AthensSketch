@@ -3,7 +3,7 @@ Sketch player toolbar provides buttons for controlling an AthensSketchPlayer (st
 "
 Class {
 	#name : #AthensSketchPlayerToolbar,
-	#superclass : #ComposableModel,
+	#superclass : #SpPresenter,
 	#instVars : [
 		'pauseButton',
 		'startButton',

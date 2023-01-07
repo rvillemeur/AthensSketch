@@ -4,7 +4,7 @@ with Player controls.
 "
 Class {
 	#name : #AthensSketchApp,
-	#superclass : #ComposableModel,
+	#superclass : #SpPresenter,
 	#instVars : [
 		'sketch',
 		'toolbar'

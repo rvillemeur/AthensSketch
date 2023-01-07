@@ -5,7 +5,7 @@ AthensSketchBrowser open
 "
 Class {
 	#name : #AthensSketchBrowser,
-	#superclass : #ComposableModel,
+	#superclass : #SpPresenter,
 	#instVars : [
 		'currentSketch',
 		'editor',

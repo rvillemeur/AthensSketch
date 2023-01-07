@@ -3,7 +3,7 @@ Browse AthensSketch class and show a list of ""sketch api"" methods
 "
 Class {
 	#name : #AthensSketchEditor,
-	#superclass : #ComposableModel,
+	#superclass : #SpPresenter,
 	#instVars : [
 		'code',
 		'methods'
