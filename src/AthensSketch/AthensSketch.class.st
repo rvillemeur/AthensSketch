@@ -25,7 +25,7 @@ Class {
 		'view',
 		'mouseState'
 	],
-	#category : #AthensSketch
+	#category : #'AthensSketch-Examples'
 }
 
 { #category : #'instance creation' }
@@ -36,6 +36,14 @@ AthensSketch class >> openPlayer [
 { #category : #'instance creation' }
 AthensSketch class >> openView [
 	^ self new openView
+]
+
+{ #category : #accessing }
+AthensSketch >> asPresenterOn: aPresenter [
+
+	^ SpMorphPresenter new
+		morph: aPresenter morph;
+		yourself
 ]
 
 { #category : #accessing }

@@ -23,10 +23,10 @@ Class {
 
 { #category : #accessing }
 AthensSketchPlayer >> exportAsGIF [
-	| exporter dialog|
-
+	| exporter dialog |
 	dialog := ASketchAnimExportDialog new.
-	dialog openDialogWithSpec modalRelativeTo: self currentWorld.
+	"dialog openDialogWithSpec modalRelativeTo: self currentWorld."
+	dialog openModal.
 	exporter := dialog gifExporter.
 	exporter ifNil:[^ self].
 	exporter save: self.	

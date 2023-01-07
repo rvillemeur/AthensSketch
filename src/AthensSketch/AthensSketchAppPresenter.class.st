@@ -7,27 +7,37 @@ Class {
 	#superclass : #SpPresenter,
 	#instVars : [
 		'sketch',
-		'toolbar'
+		'toolbar',
+		'morphPresenter'
 	],
 	#category : #'AthensSketch-UI'
 }
 
-{ #category : #spec }
-AthensSketchAppPresenter class >> defaultSpec [
-	<spec: #default>
+{ #category : #'instance creation' }
+AthensSketchAppPresenter class >> open [
+	<script>
 	
-	^ SpecLayout composed
-		newColumn: [ :c | 
-			c	add: #sketch;
-				add: #toolbar height: self toolbarHeight ];
-		yourself
+	AthensSketchAppPresenter new 
+		sketch: ASketchExampleAnimation new;
+	open
 ]
 
 { #category : #initialization }
-AthensSketchAppPresenter >> initializeWidgets [
-	sketch := ASketchBasicExample new.
+AthensSketchAppPresenter >> defaultLayout [
+
+	^ SpBoxLayout newTopToBottom
+		  add: morphPresenter;
+		  add: toolbar;
+		  yourself
+]
+
+{ #category : #initialization }
+AthensSketchAppPresenter >> initializePresenters [
+	
 	toolbar := self instantiate: AthensSketchPlayerToolbar.
-	toolbar playerControl: sketch player.
+	
+	morphPresenter := self instantiate: SpMorphPresenter.
+	morphPresenter morph: AthensSketchMorph new
 ]
 
 { #category : #initialization }
@@ -39,7 +49,8 @@ AthensSketchAppPresenter >> sketch [
 AthensSketchAppPresenter >> sketch: aSketch [
 
 	sketch := aSketch.
-	toolbar playerControl: sketch player.
+	morphPresenter morph sketch: aSketch.
+	toolbar playerControl: sketch player
 	"self title: sketch class name"
 ]
 

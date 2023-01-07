@@ -2,7 +2,7 @@
 Browse AthensSketch class and show a list of ""sketch api"" methods.
 
 ```
-AthensSketchEditor open: ASketchBasicExample
+AthensSketchEditorPresenter open: ASketchBasicExample
 ```
 "
 Class {
@@ -15,15 +15,6 @@ Class {
 	],
 	#category : #'AthensSketch-UI'
 }
-
-{ #category : #spec }
-AthensSketchEditorPresenter class >> defaultLayout [
-
-	^ SpBoxLayout newTopToBottom 
-				  add: #methods;
-				  add: #code;
-		  yourself
-]
 
 { #category : #'instance creation' }
 AthensSketchEditorPresenter class >> open: aSketchClass [
@@ -40,24 +31,41 @@ AthensSketchEditorPresenter >> code [
 
 { #category : #initialization }
 AthensSketchEditorPresenter >> connectPresenters [
-
 	"methods whenSelectedItemChanged: [ :item | 
 		item ifNotNil: [ code text: item sourceCode ] ]"
-	
+
 	methods whenSelectionChangedDo: [ :aSelection | 
-		aSelection selectedItem ifNotNil: [:item | code text: item model sourceCode ] ]
+		aSelection selectedItem ifNotNil: [ :item | 
+			code beForMethod: item model.
+			code text: item model sourceCode ] ]
+]
+
+{ #category : #initialization }
+AthensSketchEditorPresenter >> defaultLayout [
+
+	^ SpBoxLayout newTopToBottom
+		  add: methods
+		  withConstraints: [ :constraints | constraints height: 25 ];
+		  add: code;
+		  yourself
 ]
 
 { #category : #initialization }
 AthensSketchEditorPresenter >> initializePresenters [
 
-	code := self newText.
+	code := self newCode.
 	"code aboutToStyle: true.
 	code acceptBlock: [ :text | self recompileWithNew: text ]."
 	methods := self newDropList.
 	methods display: [ :item | item selector ].
 	"methods iconHolder: [ :item | Smalltalk ui icons protocolPublicIcon ]."
 	self setSketchClass: AthensSketch
+]
+
+{ #category : #accessing }
+AthensSketchEditorPresenter >> initializeWindow: aWindowPresenter [
+
+	aWindowPresenter title: title
 ]
 
 { #category : #accessing }
@@ -74,15 +82,19 @@ AthensSketchEditorPresenter >> recompileWithNew: aText [
 
 { #category : #accessing }
 AthensSketchEditorPresenter >> setSketchClass: aSketchClass [
+
 	| sketchMethods |
 	sketchMethods := aSketchClass methodsInProtocol: #'sketch api'.
 	self title: aSketchClass name.
-	sketchMethods ifEmpty: [ code text: ''. 
-		methods items: #().
+	self flag: #esteban. "how do we modify on the fly the title of the window"
+	sketchMethods ifEmpty: [ 
+		code text: ''.
+		methods items: #(  ).
 		^ self ].
 	code text: sketchMethods first sourceCode.
-	"code behavior: aSketchClass."
-	methods items: (sketchMethods sort: [ :a :b | a selector < b selector ])
+	code behavior: aSketchClass.
+	methods items:
+		(sketchMethods sort: [ :a :b | a selector < b selector ])
 ]
 
 { #category : #accessing }

@@ -38,6 +38,26 @@ ASketchAnimExportDialog class >> defaultSpec [
 		yourself
 ]
 
+{ #category : #initialization }
+ASketchAnimExportDialog >> defaultLayout [
+	^ SpBoxLayout newLeftToRight  
+			add: (SpBoxLayout newTopToBottom 
+						   add: #fileLabel;
+							add: fileInput; yourself);
+			add: (SpBoxLayout newTopToBottom 
+						   add: #startFrameLabel;
+							add: startFrameInput; yourself);
+			add: (SpBoxLayout newTopToBottom 
+						   add: #endFrameLabel;
+							add: endFrameInput; yourself);
+			add: (SpBoxLayout newTopToBottom 
+						   add: #delayLabel;
+							add: delayInput; yourself);
+			yourself
+						 
+	
+]
+
 { #category : #accessing }
 ASketchAnimExportDialog >> delayInput [
 	^ delayInput
@@ -78,16 +98,6 @@ ASketchAnimExportDialog >> gifExporter [
 	^ gifExporter
 ]
 
-{ #category : #private }
-ASketchAnimExportDialog >> initGifExporter [
-	gifExporter := AthensSketchGIFExporter new.
-	gifExporter fileName: fileInput text.
-	gifExporter startFrame: (NumberParser parse: startFrameInput text).
-	gifExporter endFrame: (NumberParser parse: endFrameInput text).
-	gifExporter delay: (NumberParser parse: delayInput text).
-	
-]
-
 { #category : #api }
 ASketchAnimExportDialog >> initialExtent [
 
@@ -99,25 +109,34 @@ ASketchAnimExportDialog >> initializeDialogWindow: aWindow [
 	aWindow okAction:[ self ok]
 ]
 
+{ #category : #private }
+ASketchAnimExportDialog >> initializeGifExporter [
+	gifExporter := AthensSketchGIFExporter new.
+	gifExporter fileName: fileInput text.
+	gifExporter startFrame: (NumberParser parse: startFrameInput text).
+	gifExporter endFrame: (NumberParser parse: endFrameInput text).
+	gifExporter delay: (NumberParser parse: delayInput text).
+	
+]
+
 { #category : #initialization }
 ASketchAnimExportDialog >> initializePresenter [
-	startFrameInput whenTextIsAccepted: [ :text | NumberParser parse: text	"onError:[:ex |self inform:ex]" ].
-	endFrameInput whenTextIsAccepted: [ :text | NumberParser parse: text	"onError:[:ex |self inform:ex]" ]
+	startFrameInput whenSubmitDo: [ :text | NumberParser parse: text	"onError:[:ex |self inform:ex]" ].
+	endFrameInput whenSubmitDo: [ :text | NumberParser parse: text	"onError:[:ex |self inform:ex]" ]
 ]
 
 { #category : #initialization }
 ASketchAnimExportDialog >> initializeWidgets [
 
 	fileLabel := self newLabel.
-	fileLabel text: 'Filename' translated.
+	fileLabel label: 'Filename' translated.
 	fileInput := self newTextInput
 		entryCompletion: nil;
-		acceptOnCR;
 		yourself.
 	startFrameLabel := self newLabel.
-	startFrameLabel text: 'Start Frame' translated.
+	startFrameLabel label: 'Start Frame' translated.
 	endFrameLabel := self newLabel.
-	endFrameLabel text: 'End Frame' translated.
+	endFrameLabel label: 'End Frame' translated.
 	startFrameInput := self newTextInput
 		entryCompletion: nil;
 		yourself.
@@ -128,9 +147,9 @@ ASketchAnimExportDialog >> initializeWidgets [
 		entryCompletion: nil;
 		yourself.
 	delayLabel := self newLabel.
-	delayLabel text: 'delay (1/100 sec)' translated.
+	delayLabel label: 'delay (1/100 sec)' translated.
 	self focusOrder add: fileInput; add: startFrameInput; add: endFrameInput; add: delayInput.
-	self title:'Export as Animated GIF'.
+	"self title:'Export as Animated GIF'."
 ]
 
 { #category : #actions }
@@ -151,7 +170,7 @@ ASketchAnimExportDialog >> ok [
 		do: [ :ex | 
 			UIManager default alert: ex messageText title: delayLabel label.
 			^ false ].
-	self initGifExporter.
+	self initializeGifExporter.
 	gifExporter startFrame > gifExporter endFrame
 		ifTrue: [ 
 			UIManager default alert: 'Last frame must not be lower than first frame' translated title: 'Invalid input'.
