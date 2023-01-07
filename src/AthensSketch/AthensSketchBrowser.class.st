@@ -108,7 +108,8 @@ AthensSketchBrowser >> initialExtent [
 ]
 
 { #category : #initialization }
-AthensSketchBrowser >> initializeWidgets [
+AthensSketchBrowser >> initializePresenters [
+
 	list := self newList.
 	tree := self newTree.
 	editor := self newText.
@@ -117,10 +118,10 @@ AthensSketchBrowser >> initializeWidgets [
 	tree
 		roots: self sketchPackages;
 		displayBlock: [ :item | item asString ].
-	tree menu:[:menu :shifted | self buildMenu:menu shifted: shifted].
-	self whenBuiltDo: [ self window whenClosedDo: [ self setSketchSource: nil ] ].
-	self title: 'SketchBrowser'.
-
+	tree menu: [ :menu :shifted | self buildMenu: menu shifted: shifted ].
+	self whenBuiltDo: [ 
+		self window whenClosedDo: [ self setSketchSource: nil ] ].
+	self title: 'SketchBrowser'
 ]
 
 { #category : #accessing }

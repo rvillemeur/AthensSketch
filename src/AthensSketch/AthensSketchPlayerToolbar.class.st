@@ -1,5 +1,10 @@
 "
 Sketch player toolbar provides buttons for controlling an AthensSketchPlayer (start/pause/resume/stop)
+
+
+```
+AthensSketchPlayerToolbar new open
+```
 "
 Class {
 	#name : #AthensSketchPlayerToolbar,
@@ -80,17 +85,27 @@ yTJBOJ+IiaV00Qyu2IEGUwooDOCwQQEoCazZq4ZQOkwK8Hhhcig1Nvh8nlFyLP6AgA4qhIUd
 IQA7'
 ]
 
+{ #category : #initialization }
+AthensSketchPlayerToolbar >> defaultLayout [
+	^ SpBoxLayout newLeftToRight
+				  add: #startButton;
+				  add: #stopButton;
+				  add: #exportButton;
+		  yourself
+]
+
 { #category : #accessing }
 AthensSketchPlayerToolbar >> exportButton [
 	^ exportButton
 ]
 
 { #category : #initialization }
-AthensSketchPlayerToolbar >> initializeWidgets [
-	startButton := self instantiate: ButtonModel.
-	pauseButton := self instantiate: ButtonModel.
-	stopButton := self instantiate: ButtonModel.
-	exportButton := self instantiate: ButtonModel.
+AthensSketchPlayerToolbar >> initializePresenters [
+
+	startButton := self instantiate: SpToolbarButtonPresenter.
+	pauseButton := self instantiate: SpToolbarButtonPresenter.
+	stopButton := self instantiate: SpToolbarButtonPresenter.
+	exportButton := self instantiate: SpToolbarButtonPresenter.
 	self setStateButtons
 ]
 

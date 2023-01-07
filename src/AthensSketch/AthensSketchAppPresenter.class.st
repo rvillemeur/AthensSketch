@@ -3,7 +3,7 @@ An AthensSketchApp is a simple window showing an AthensSketch on a Morph
 with Player controls.
 "
 Class {
-	#name : #AthensSketchApp,
+	#name : #AthensSketchAppPresenter,
 	#superclass : #SpPresenter,
 	#instVars : [
 		'sketch',
@@ -13,7 +13,7 @@ Class {
 }
 
 { #category : #spec }
-AthensSketchApp class >> defaultSpec [
+AthensSketchAppPresenter class >> defaultSpec [
 	<spec: #default>
 	
 	^ SpecLayout composed
@@ -24,25 +24,26 @@ AthensSketchApp class >> defaultSpec [
 ]
 
 { #category : #initialization }
-AthensSketchApp >> initializeWidgets [
+AthensSketchAppPresenter >> initializeWidgets [
 	sketch := ASketchBasicExample new.
 	toolbar := self instantiate: AthensSketchPlayerToolbar.
 	toolbar playerControl: sketch player.
 ]
 
 { #category : #initialization }
-AthensSketchApp >> sketch [
+AthensSketchAppPresenter >> sketch [
 	^ sketch viewMorph asSpecAdapter
 ]
 
 { #category : #initialization }
-AthensSketchApp >> sketch: aSketch [
+AthensSketchAppPresenter >> sketch: aSketch [
+
 	sketch := aSketch.
 	toolbar playerControl: sketch player.
-	self title: sketch class name.
+	"self title: sketch class name"
 ]
 
 { #category : #initialization }
-AthensSketchApp >> toolbar [
+AthensSketchAppPresenter >> toolbar [
 	^ toolbar
 ]

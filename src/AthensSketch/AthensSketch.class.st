@@ -30,7 +30,7 @@ Class {
 
 { #category : #'instance creation' }
 AthensSketch class >> openPlayer [
-	^ (AthensSketchApp new sketch: self new) openWithSpec
+	^ (AthensSketchAppPresenter new sketch: self new) openWithSpec
 ]
 
 { #category : #'instance creation' }
@@ -169,7 +169,7 @@ AthensSketch >> mouseState [
 
 { #category : #states }
 AthensSketch >> openPlayer [
-	^ (AthensSketchApp new sketch: self) openWithSpec
+	^ (AthensSketchAppPresenter new sketch: self) openWithSpec
 ]
 
 { #category : #states }

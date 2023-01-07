@@ -43,7 +43,7 @@ AthensSketchMorph >> handleMouseMove: anEvent [
 		ifTrue: [ ^ self ].
 	anEvent wasHandled: true.
 	translatedEvent := anEvent copy translateBy: -1 * self topLeft.
-	sketch mouseMove: translatedEvent
+	sketch ifNotNil: [ sketch mouseMove: translatedEvent ]
 ]
 
 { #category : #accessing }
