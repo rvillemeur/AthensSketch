@@ -31,8 +31,9 @@ AthensSketchBrowser class >> defaultSpec [
 
 { #category : #open }
 AthensSketchBrowser class >> open [
+
 	<example>
-	self new openWithSpec
+	self new open
 ]
 
 { #category : #'class initialization' }
@@ -111,17 +112,32 @@ AthensSketchBrowser >> initialExtent [
 AthensSketchBrowser >> initializePresenters [
 
 	list := self newList.
-	tree := self newTree.
+
 	editor := self newText.
 	sketchEditor := self instantiate: AthensSketchEditorPresenter.
 	toolbar := self instantiate: AthensSketchPlayerToolbar.
+
+	tree := self newTreeTable.
+	tree
+		addColumn: 
+			(SpCompositeTableColumn new
+				 title: 'Classes';
+				 addColumn: ((SpImageTableColumn evaluated: [ :aClass | 
+							   self iconNamed: aClass systemIconName ])
+						  width: 20;
+						  yourself);
+				 addColumn: (SpStringTableColumn evaluated: #name);
+				 yourself);
+		yourself.
 	tree
 		roots: self sketchPackages;
-		displayBlock: [ :item | item asString ].
-	tree menu: [ :menu :shifted | self buildMenu: menu shifted: shifted ].
+		children: [ :aClass | aClass subclasses ]
+
+
+	"	tree menu: [ :menu :shifted | self buildMenu: menu shifted: shifted ].
 	self whenBuiltDo: [ 
 		self window whenClosedDo: [ self setSketchSource: nil ] ].
-	self title: 'SketchBrowser'
+"
 ]
 
 { #category : #accessing }
@@ -213,7 +229,7 @@ AthensSketchBrowser >> sketchNodeFromMethod: aSketchExampleMethod [
 AthensSketchBrowser >> sketchPackages [
 	| packages |
 	packages := (AthensSketch allSubclasses collect: [ :c | RPackageOrganizer default packageOf: c ]) asSet.
-	^ packages collect: [ :p | self packageNodeFrom: p ]
+	^ packages
 ]
 
 { #category : #private }
