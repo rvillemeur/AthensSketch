@@ -10,11 +10,17 @@ Class {
 	#superclass : #SpPresenter,
 	#instVars : [
 		'code',
-		'methods',
-		'title'
+		'methods'
 	],
 	#category : #'AthensSketch-UI'
 }
+
+{ #category : #'instance creation' }
+AthensSketchEditorPresenter class >> open [
+	<script>
+	
+	 self open: ASketchBasicExample
+]
 
 { #category : #'instance creation' }
 AthensSketchEditorPresenter class >> open: aSketchClass [
@@ -54,18 +60,18 @@ AthensSketchEditorPresenter >> defaultLayout [
 AthensSketchEditorPresenter >> initializePresenters [
 
 	code := self newCode.
-	"code aboutToStyle: true.
-	code acceptBlock: [ :text | self recompileWithNew: text ]."
+
+	code whenSubmitDo: [ :text | self recompileWithNew: text ].
 	methods := self newDropList.
 	methods display: [ :item | item selector ].
-	"methods iconHolder: [ :item | Smalltalk ui icons protocolPublicIcon ]."
+	methods displayIcon: [ :item | self iconNamed: #protocolPublic ].
 	self setSketchClass: AthensSketch
 ]
 
 { #category : #accessing }
 AthensSketchEditorPresenter >> initializeWindow: aWindowPresenter [
 
-	aWindowPresenter title: title
+	aWindowPresenter title: 'Unknown'
 ]
 
 { #category : #accessing }
@@ -100,5 +106,5 @@ AthensSketchEditorPresenter >> setSketchClass: aSketchClass [
 { #category : #accessing }
 AthensSketchEditorPresenter >> title: aString [
 
-	title := aString
+	self withWindowDo: [ :w | w title: aString ]
 ]

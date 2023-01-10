@@ -26,17 +26,18 @@ AthensSketchAppPresenter class >> open [
 AthensSketchAppPresenter >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom
+		spacing: 5;
 		  add: morphPresenter;
-		  add: toolbar;
+		  add: toolbar expand: false;
 		  yourself
 ]
 
 { #category : #initialization }
 AthensSketchAppPresenter >> initializePresenters [
-	
+
 	toolbar := self instantiate: AthensSketchPlayerToolbar.
-	
-	morphPresenter := self instantiate: SpMorphPresenter.
+
+	morphPresenter := self newMorph.
 	morphPresenter morph: AthensSketchMorph new
 ]
 

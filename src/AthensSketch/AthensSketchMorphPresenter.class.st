@@ -8,18 +8,25 @@ Class {
 	#category : #'AthensSketch-UI'
 }
 
+{ #category : #'instance creation' }
+AthensSketchMorphPresenter class >> open [ 
+
+	<script>
+	self new open
+]
+
 { #category : #layout }
 AthensSketchMorphPresenter >> defaultLayout [
 
-	^ SpBoxConstraints 
+	^ SpBoxLayout
 		newTopToBottom 
 			add: morphPresenter;
 			yourself
 ]
 
 { #category : #layout }
-AthensSketchMorphPresenter >> initializePresenters [ 
+AthensSketchMorphPresenter >> initializePresenters [
 
-	morphPresenter := self instantiate: SpMorphPresenter.
-	morphPresenter morph: AthensSketchMorph new. 
+	morphPresenter := self newMorph.
+	morphPresenter morph: AthensSketchMorph new
 ]

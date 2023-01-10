@@ -24,18 +24,6 @@ Class {
 	#category : #'AthensSketch-UI'
 }
 
-{ #category : #spec }
-AthensSketchPlayerToolbar class >> defaultSpec [
-	<spec>
-	^ SpecLayout composed
-		newRow: [ :row | 
-					row
-						add: #startButton;
-						add: #stopButton;
-						add: #exportButton ];
-		yourself
-]
-
 { #category : #icons }
 AthensSketchPlayerToolbar class >> pauseIcon [
 	^ pauseIcon
@@ -87,10 +75,12 @@ IQA7'
 
 { #category : #initialization }
 AthensSketchPlayerToolbar >> defaultLayout [
+
 	^ SpBoxLayout newLeftToRight
-				  add: #startButton;
-				  add: #stopButton;
-				  add: #exportButton;
+		spacing: 5;
+		  add: #startButton;
+		  add: #stopButton;
+		  add: #exportButton;
 		  yourself
 ]
 
@@ -102,10 +92,10 @@ AthensSketchPlayerToolbar >> exportButton [
 { #category : #initialization }
 AthensSketchPlayerToolbar >> initializePresenters [
 
-	startButton := self instantiate: SpToolbarButtonPresenter.
-	pauseButton := self instantiate: SpToolbarButtonPresenter.
-	stopButton := self instantiate: SpToolbarButtonPresenter.
-	exportButton := self instantiate: SpToolbarButtonPresenter.
+	startButton := self newButton.
+	pauseButton := self newButton.
+	stopButton := self newButton.
+	exportButton := self newButton.
 	self setStateButtons
 ]
 
@@ -174,7 +164,7 @@ AthensSketchPlayerToolbar >> setStateButtons [
 		
 	exportButton 
 		label: 'Export';
-		icon: Smalltalk ui icons smallSaveIcon;
+		icon: (self iconNamed: #smallSave);
 		help: 'export frames';
 		action: [self playerControl exportAsGIF];
 		enabled: playerControl notNil.

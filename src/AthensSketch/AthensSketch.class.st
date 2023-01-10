@@ -41,9 +41,9 @@ AthensSketch class >> openView [
 { #category : #accessing }
 AthensSketch >> asPresenterOn: aPresenter [
 
-	^ SpMorphPresenter new
-		morph: aPresenter morph;
-		yourself
+	^ aPresenter newMorph
+		  morph: aPresenter morph;
+		  yourself
 ]
 
 { #category : #accessing }

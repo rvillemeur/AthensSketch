@@ -18,15 +18,18 @@ Class {
 }
 
 { #category : #spec }
-AthensSketchBrowser class >> defaultSpec [
-	<spec: #default>
-	^ SpecLayout composed
-		newColumn: [ :c | 	c
-						newRow:[: r | r add: #tree; addSplitter; add:#editor];
-						addSplitter;
-						newRow: [ :r | r add: #toolbar ] height: 32;
-						newRow: [ :r | r add: #sketchEditor] ];
-		yourself
+AthensSketchBrowser class >> defaultLayout [
+
+	^ SpPanedLayout newTopToBottom
+		  add: (SpPanedLayout newLeftToRight
+				   add: #tree;
+				   add: #editor;
+				   yourself);
+		  add: (SpBoxLayout newTopToBottom
+				   add: #toolbar expand: false;
+				   add: #sketchEditor;
+				   yourself);
+		  yourself
 ]
 
 { #category : #open }
@@ -87,6 +90,12 @@ AthensSketchBrowser >> buildMenu: aMenuModel shifted: shifted [
 	
 ]
 
+{ #category : #initialization }
+AthensSketchBrowser >> connectPresenters [
+
+	tree whenSelectedItemChangedDo: [ :item | self updateSourceWith: item ]
+]
+
 { #category : #accessing }
 AthensSketchBrowser >> currentSketch [
 	^ currentSketch
@@ -117,27 +126,12 @@ AthensSketchBrowser >> initializePresenters [
 	sketchEditor := self instantiate: AthensSketchEditorPresenter.
 	toolbar := self instantiate: AthensSketchPlayerToolbar.
 
-	tree := self newTreeTable.
-	tree
-		addColumn: 
-			(SpCompositeTableColumn new
-				 title: 'Classes';
-				 addColumn: ((SpImageTableColumn evaluated: [ :aClass | 
-							   self iconNamed: aClass systemIconName ])
-						  width: 20;
-						  yourself);
-				 addColumn: (SpStringTableColumn evaluated: #name);
-				 yourself);
-		yourself.
+	tree := self newTree.
+	tree display: [ :item | item name ].
+	tree displayIcon: [ :item | self iconNamed: item iconName ].
 	tree
 		roots: self sketchPackages;
-		children: [ :aClass | aClass subclasses ]
-
-
-	"	tree menu: [ :menu :shifted | self buildMenu: menu shifted: shifted ].
-	self whenBuiltDo: [ 
-		self window whenClosedDo: [ self setSketchSource: nil ] ].
-"
+		children: [ :aNode | aNode children ]
 ]
 
 { #category : #accessing }
@@ -227,16 +221,17 @@ AthensSketchBrowser >> sketchNodeFromMethod: aSketchExampleMethod [
 
 { #category : #private }
 AthensSketchBrowser >> sketchPackages [
-	| packages |
-	packages := (AthensSketch allSubclasses collect: [ :c | RPackageOrganizer default packageOf: c ]) asSet.
-	^ packages
+
+	^ AthensSketchPackage all
 ]
 
 { #category : #private }
 AthensSketchBrowser >> sketchesFromPackage: aPackage [
 	| sketchclasses |
-	sketchclasses := aPackage classes asOrderedCollection sort: [ :a :b | a name < b name ].
-	^ sketchclasses select: [ :c | c inheritsFrom: AthensSketch ] thenCollect: [ :c | self sketchNodeFrom: c ]
+	
+	^  (aPackage definedClasses asOrderedCollection 
+		select: [ :each | each inheritsFrom: AthensSketch ])
+		sorted: #name ascending
 ]
 
 { #category : #private }
@@ -255,4 +250,14 @@ AthensSketchBrowser >> toolbar [
 { #category : #accessing }
 AthensSketchBrowser >> tree [
 	^ tree
+]
+
+{ #category : #private }
+AthensSketchBrowser >> updateSourceWith: anItem [
+
+	anItem ifNil: [  ].
+	
+	" self
+					setSketchSource: aSketchExampleMethod methodClass theNonMetaClass
+					selector: aSketchExampleMethod selector ]"
 ]
